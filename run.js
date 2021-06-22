@@ -12,8 +12,6 @@ process.setMaxListeners(0);
 
 app.get('/', (req, res) => {
   (async () => {
-    await fs.promises.mkdir('public', { recursive: true });
-    await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
 
     const browser = await puppeteer.launch(process.env.AWS_EXECUTION_ENV ? {
       args: chrome.args,
