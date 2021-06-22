@@ -10,7 +10,7 @@ const port = process.env.PORT || 3018;
 // server.setTimeout(0)
 process.setMaxListeners(0);
 
-app.get('/api', (req, res) => {
+app.get('/api', async (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 
   await fs.promises.mkdir('public', { recursive: true });
