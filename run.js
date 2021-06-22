@@ -10,36 +10,36 @@ const port = process.env.PORT || 3018;
 // server.setTimeout(0)
 process.setMaxListeners(0);
 
-app.get('/', (req, res) => {
-  (async () => {
-    await fs.promises.mkdir('public', { recursive: true });
-    await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
+app.get('/api', (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
 
-    const browser = await puppeteer.launch(process.env.AWS_EXECUTION_ENV ? {
-      args: chrome.args,
-      executablePath: await chrome.executablePath,
-      headless: chrome.headless
-    } : {
-      args: [],
-      executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-    });
+  await fs.promises.mkdir('public', { recursive: true });
+  await fs.promises.writeFile('public/index.html', '<img src="/image.png">');
 
-    const page = await browser.newPage();
+  const browser = await puppeteer.launch(process.env.AWS_EXECUTION_ENV ? {
+    args: chrome.args,
+    executablePath: await chrome.executablePath,
+    headless: chrome.headless
+  } : {
+    args: [],
+    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  });
 
-    await page.setViewport({
-      width: 400,
-      height: 400,
-      deviceScaleFactor: 1
-    });
-    await page.goto('https://google.com');
+  const page = await browser.newPage();
 
-    let allHtml = await page.content();
-    let $ = cheerio.load(allHtml);
-    // await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
-    // await page.screenshot({ path: 'public/image.png' });
-    await browser.close();
-    res.status(200).json({ result: $ })
-  })();
+  await page.setViewport({
+    width: 400,
+    height: 400,
+    deviceScaleFactor: 1
+  });
+  await page.goto('https://google.com');
+
+  let allHtml = await page.content();
+  let $ = cheerio.load(allHtml);
+  // await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
+  // await page.screenshot({ path: 'public/image.png' });
+  await browser.close();
+  res.status(200).json({ result: $ })
 })
 
 
