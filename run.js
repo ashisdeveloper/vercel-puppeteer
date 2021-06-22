@@ -4,10 +4,10 @@ const puppeteer = require('puppeteer-core');
 const cheerio = require('cheerio');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3018;
+const port = process.env.PORT || 3000;
 // app.use(express.json())
-// let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
-// server.setTimeout(0)
+let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
+server.setTimeout(0)
 process.setMaxListeners(0);
 
 app.get('/api', async (req, res) => {

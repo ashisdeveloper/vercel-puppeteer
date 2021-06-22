@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "AWS_LAMBDA_FUNCTION_NAME=true node run.js"
+    "start": "AWS_LAMBDA_FUNCTION_NAME=true node run.js"
   },
   "dependencies": {
     "express": "^4.17.1",
