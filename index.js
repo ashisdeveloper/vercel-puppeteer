@@ -5,30 +5,8 @@ const express = require('express');
 const app = express();
 
 app.get('/', async (req, res) => {
-    const browser = await puppeteer.launch(process.env.AWS_EXECUTION_ENV ? {
-        args: chrome.args,
-        executablePath: await chrome.executablePath,
-        headless: chrome.headless
-    } : {
-        args: [],
-        executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-    });
-
-    const page = await browser.newPage();
-
-    await page.setViewport({
-        width: 400,
-        height: 400,
-        deviceScaleFactor: 1
-    });
-    await page.goto('https://google.com');
-
-    let allHtml = await page.content();
-    let $ = cheerio.load(allHtml);
-    // await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
-    // await page.screenshot({ path: 'public/image.png' });
-    await browser.close();
-    res.status(200).json({ result: $ })
+    
+    res.status(200).json({ result: 'allHtml' })
 });
 
 const port = process.env.PORT || 3000;
