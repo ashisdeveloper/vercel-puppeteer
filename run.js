@@ -5,9 +5,9 @@ const cheerio = require('cheerio');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3018;
-app.use(express.json())
-let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
-server.setTimeout(0)
+// app.use(express.json())
+// let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
+// server.setTimeout(0)
 process.setMaxListeners(0);
 
 app.get('/', (req, res) => {
