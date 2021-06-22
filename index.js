@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
         height: 400,
         deviceScaleFactor: 1
     });
-    await page.goto('https://google.com');
+    await page.goto('https://www.telehealthindia.in');
 
     let allHtml = await page.content();
     // await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
