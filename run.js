@@ -22,8 +22,8 @@ const puppeteer = require('puppeteer-core');
     height: 400,
     deviceScaleFactor: 1
   });
-
-  await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
+  await page.goto('https://google.com');
+  // await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
   await page.screenshot({ path: 'public/image.png' });
   await browser.close();
 })();
