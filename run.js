@@ -5,7 +5,6 @@ const cheerio = require('cheerio');
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3018;
-app.use(cors())
 app.use(express.json())
 let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
 server.setTimeout(0)
