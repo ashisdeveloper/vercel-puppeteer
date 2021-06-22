@@ -4,7 +4,9 @@
     "build": "AWS_LAMBDA_FUNCTION_NAME=true node run.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "chrome-aws-lambda": "8.0.2",
-    "puppeteer-core": "8.0.0"
+    "puppeteer-core": "8.0.0",
+    "cheerio": "^1.0.0-rc.3"
   }
 }
