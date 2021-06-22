@@ -12,5 +12,5 @@ app.get('/', async (req, res) => {
 const port = process.env.PORT || 3000;
 
 let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
-server.setTimeout(0)
-process.setMaxListeners(0);
+/* server.setTimeout(0)
+process.setMaxListeners(0); */
