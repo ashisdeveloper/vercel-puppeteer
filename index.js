@@ -73,21 +73,6 @@ function shuffle(array) {
     });
     await page.goto('https://www.telehealthindia.in');
     let allHtml = await page.content();
-
-    await page.goto('https://www.waferpro.com');
-    allHtml = allHtml + await page.content();
-
-    await page.goto('https://www.softtechlab.com');
-    allHtml = allHtml + await page.content();
-
-    await page.goto('https://www.ismartslab.com');
-    allHtml = allHtml + await page.content();
-
-    await page.goto('https://www.google.com');
-    allHtml = allHtml + await page.content();
-
-    await page.goto('https://www.facebook.com');
-    allHtml = allHtml + await page.content();
     // await page.setContent('<h1>Hello World!</h1>', { waitUntil: 'networkidle2' });
     // await page.screenshot({ path: 'public/image.png' });
     await browser.close();
