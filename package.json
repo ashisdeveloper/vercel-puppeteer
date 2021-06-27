@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "AWS_EXECUTION_ENV=true node index.js"
   },
   "keywords": [],
   "author": "",
