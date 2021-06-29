@@ -7,19 +7,22 @@ const cors = require('cors')
 const app = express();
 app.use(cors())
 app.use(express.json())
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3012;
 let server = app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
 server.setTimeout(0)
 process.setMaxListeners(0);
 
 
-app.get('/', async (req, res) => {
+app.get('/guess-email', async (req, res) => {
     let result = await guessEmail(req.query.site.trim())
     res.status(200).json({ result })
 });
+app.get('/', async (req, res) => {
+    res.send('Website under maintenance')
+});
 
 const guessEmail = async (domain) => {
-    let preMailArr = ['info', 'sales', 'support', 'contact', 'admin']
+    let preMailArr = ['info', 'sales', 'support', 'contact', 'admin', 'hello', 'editor', 'marketing', 'feedback', 'hr', 'team', 'customerservice', 'office', 'mail', 'enquiries']
     preMailArr = shuffle(preMailArr)
     let finalResult = [];
     await bluebird.map(preMailArr, async (preMail) => {
@@ -27,7 +30,13 @@ const guessEmail = async (domain) => {
             let email = preMail + '@' + domain
             let result = await new Promise((resolve, reject) => {
                 try {
-                    verifier.verify(email, function (err, info) {
+                    verifier.verify(email, {
+                        port: 25,
+                        sender: 'support@microsoft.com',
+                        timeout: 0,
+                        fqdn: 'microsoft.com',
+                        ignore: false
+                    }, function (err, info) {
                         if (!err) resolve(info.success)
                         else {
                             resolve(false)
@@ -37,7 +46,7 @@ const guessEmail = async (domain) => {
             })
             finalResult.push({ domain, email, status: result })
         }
-    }, { concurrency: 5 })
+    }, { concurrency: 15 })
     finalResult = finalResult.filter(item => item.status == true) || []
     finalResult = finalResult.length > 0 ? finalResult.map(item => item.email) : []
     return finalResult
